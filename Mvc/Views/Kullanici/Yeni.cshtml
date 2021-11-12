@@ -1,0 +1,67 @@
+﻿@model Mvc.Models.KullaniciModel
+@{
+    ViewData["Title"] = "Yeni";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Horizontal Form</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form class="form-horizontal" action="/Kullanici/Yeni" method="post">
+        <div class="card-body">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Kullanıcı Adı</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="KullaniciAdi" placeholder="Kullanıcı Adı">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Şifre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="Sifre" placeholder="Şifre">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Eposta</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="EPosta" placeholder="Eposta">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Ad</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="Ad" placeholder="Ad">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Soyad</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="Soyad" placeholder="Soyad">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="RoleId">
+                        @foreach (var item in Model.roleListesi)
+                        {
+                            <option value="@item.RoleId">@item.RoleAd</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        @ViewBag.Hata
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info">Kaydet</button>
+            <button type="submit" class="btn btn-default float-right">Cancel</button>
+        </div>
+        <!-- /.card-footer -->
+    </form>
+</div>
+<!-- /.card -->

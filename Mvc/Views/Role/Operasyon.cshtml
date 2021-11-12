@@ -1,0 +1,98 @@
+﻿@model Mvc.Models.RoleOperasyonModel
+@{
+    ViewData["Title"] = "Operasyon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@Model.role.RoleAd</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/Role">Roleller</a></li>
+                    <li class="breadcrumb-item active">Role operasyon</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">İzin verilen operasyonlar</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Ad</th>
+                                <th>Task</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.aktifOperasyon)
+                            {
+                                <tr>
+                                    <td>@item.OperasyonAdi</td>
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" href="/Role/Operasyonsil?roleId=@Model.role.RoleId&OperasyonId=@item.OperasyonId">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Sil
+                                            </a>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">İzin ver</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <form class="form-horizontal" action="/Role/OperasyonEkle" method="post">
+                        <input type="hidden" name="RoleId" value="@Model.role.RoleId" />
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Role Adı</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="OperasyonId">
+                                        @foreach (var item in Model.pasifOperasyon)
+                                        {
+                                            <option value="@item.OperasyonId">@item.OperasyonAdi</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        @ViewBag.Hata
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Kaydet</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
