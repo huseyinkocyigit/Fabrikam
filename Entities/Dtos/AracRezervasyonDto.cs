@@ -12,5 +12,6 @@ namespace Entities.Dtos
     {
         public Arac Arac { get; set; }
         public List<CheckboxItem> SaatlikDurumListesi { get; set; }
+        
     }
 }
